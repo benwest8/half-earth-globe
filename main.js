@@ -14,6 +14,16 @@ require([
     const view = new SceneView({
       map: map,
       container: "sceneContainer",
+      environment: {
+        atmosphereEnabled: false,
+        background: {
+          type: "color",
+          color: [0,10,16]
+        }
+      },
+    
+      ui: {
+        components: ["zoom"]
+       }
     });
-  
   });
