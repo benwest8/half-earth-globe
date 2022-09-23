@@ -4,13 +4,15 @@ require([
   "esri/layers/TileLayer",
   "esri/Basemap",
   "esri/layers/FeatureLayer",
+  "esri/widgets/LayerList",
   "dojo/domReady!" // will not be called until DOM is ready
   ], function (
   Map,
   SceneView,
   TileLayer,
   Basemap,
-  FeatureLayer
+  FeatureLayer,
+  LayerList
   ) {
     
     const satelliteLayer = new TileLayer({
@@ -56,5 +58,13 @@ require([
       ui: {
         components: ["zoom"]
        }
-    });
+      });
+
+      const layerList = new LayerList({
+        view: view
+      });
+    
+      view.ui.add(layerList, {
+        position: "top-right"
+      });
   });
