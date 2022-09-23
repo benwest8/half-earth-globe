@@ -3,12 +3,14 @@ require([
   "esri/views/SceneView",
   "esri/layers/TileLayer",
   "esri/Basemap",
+  "esri/layers/FeatureLayer",
   "dojo/domReady!" // will not be called until DOM is ready
   ], function (
   Map,
   SceneView,
   TileLayer,
-  Basemap
+  Basemap,
+  FeatureLayer
   ) {
     
     const satelliteLayer = new TileLayer({
@@ -26,9 +28,18 @@ require([
       title: "half-earth-basemap",
       id: "half-earth-basemap"
     });
+
+    const rangelands = new TileLayer({
+      url: 'https://tiles.arcgis.com/tiles/IkktFdUAcY3WrH25/arcgis/rest/services/gHM_Rangeland_inverted/MapServer'
+    })
+
+    const protected = new FeatureLayer({
+      url: 'https://services5.arcgis.com/Mj0hjvkNtV7NRhA7/arcgis/rest/services/WDPA_v0/FeatureServer/1'
+    })
     
     const map = new Map({
-      basemap: basemap
+      basemap: basemap,
+      layers: [rangelands, protected]
     });
   
     const view = new SceneView({
